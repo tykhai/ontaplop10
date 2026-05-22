@@ -20,7 +20,7 @@ if "seq_index" not in st.session_state: st.session_state.seq_index = 0
 st.sidebar.title("HỆ THỐNG VÀO 10 🚀")
 chuc_nang = st.sidebar.radio("CHỌN PHÂN HỆ VẬN HÀNH:", ["👨‍🎓 HỌC SINH LUYỆN THI", "😎 QUẢN LÝ NGÂN HÀNG ĐỀ"])
 
-DANH_SACH_MON = ["Toán Học", "Tiếng Anh", "Ngữ Văn"]
+DANH_SACH_MON = ["Toán", "Tiếng Anh", "Ngữ Văn"]
 
 # =====================================================================
 # PHÂN HỆ 1: INTERFACE DÀNH CHO HỌC SINH LUYỆN ĐỀ
