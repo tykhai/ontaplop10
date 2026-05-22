@@ -1,0 +1,4 @@
+pip install streamlit
+streamlit run admin_app.py
+
+streamlit run import_csvToDB_v2.py
