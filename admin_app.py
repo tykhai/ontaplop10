@@ -20,7 +20,7 @@ if "seq_index" not in st.session_state: st.session_state.seq_index = 0
 st.sidebar.title("HỆ THỐNG VÀO 10 🚀")
 chuc_nang = st.sidebar.radio("CHỌN PHÂN HỆ VẬN HÀNH:", ["👨‍🎓 HỌC SINH LUYỆN THI", "😎 QUẢN LÝ NGÂN HÀNG ĐỀ"])
 
-DANH_SACH_MON = ["Toán HCM","Toán", "Tiếng Anh", "Ngữ Văn"]
+DANH_SACH_MON = ["Toán HCM","Toán Học", "Tiếng Anh", "Ngữ Văn"]
 
 # =====================================================================
 # PHÂN HỆ 1: INTERFACE DÀNH CHO HỌC SINH LUYỆN ĐỀ
@@ -83,7 +83,32 @@ if chuc_nang == "👨‍🎓 HỌC SINH LUYỆN THI":
         if q:
             st.subheader(f"📝 Đề bài môn {q[1]} ({q[3]} - Mức độ: {q[4]}):")
             st.info(q[5]) # Đề bài chữ
+
+            # --- ĐOẠN CODE DEBUG THÔNG MINH ---
+            # --- ĐOẠN CODE DEBUG THÁM TỬ TOÀN DIỆN ---
+            st.write("---")
+            st.write("### 🕵️ KHU VỰC THÁM TỬ KIỂM TRA DỮ LIỆU:")
             
+            # 1. Kiểm tra giá trị thô lấy từ cột 13 trong Database
+            gia_tri_db = q[13]
+            st.write(f"1. Loại dữ liệu: `{type(gia_tri_db)}` | Giá trị thô trong DB: `{gia_tri_db}`")
+            
+            # 2. Chuẩn hóa chuỗi để kiểm tra đường dẫn file vật lý
+            path_check = str(gia_tri_db).strip() if gia_tri_db else ""
+            st.write(f"2. Đường dẫn sau chuẩn hóa: `{path_check}`")
+            
+            # 3. Kiểm tra xem file có thực sự nằm trong thư mục project không
+            if path_check:
+                ton_tai = os.path.exists(path_check)
+                st.write(f"3. File tồn tại trong thư mục Server/Local không? -> **{ton_tai}**")
+                if not ton_tai:
+                    st.error(f"❌ Vị trí tuyệt đối hệ thống đi tìm mà không thấy: `{os.path.abspath(path_check)}`")
+            else:
+                st.warning("⚠️ Câu hỏi này trong Database hoàn toàn KHÔNG có dữ liệu đường dẫn ảnh!")
+            st.write("---")
+            # --- HẾT ĐOẠN CODE DEBUG THÁM TỬ ---
+	    # ---HẾT ĐOẠN CODE DEBUG THÔNG MINH ---
+
             # 🖼️ LOAD ẢNH ĐỀ BÀI (Đọc động trực tiếp từ cột số 13 - anh_de_bai)
             if q[13] and os.path.exists(str(q[13])):
                 st.image(q[13], caption="Hình ảnh đồ thị / Sơ đồ kèm theo đề bài", width=500)
